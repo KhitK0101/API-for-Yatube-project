@@ -9,6 +9,9 @@ class Group(models.Model):
     slug = models.SlugField(unique=True)
     description = models.TextField()
 
+    class Meta:
+        ordering = ('id',)
+
     def __str__(self):
         return self.title
 
@@ -29,8 +32,11 @@ class Post(models.Model):
         related_name="posts", blank=True, null=True
     )
 
+    class Meta:
+        ordering = ('id',)
+
     def __str__(self):
-        return self.text
+        return self.text(200)
 
 
 class Comment(models.Model):
@@ -44,6 +50,9 @@ class Comment(models.Model):
     created = models.DateTimeField(
         'Дата добавления', auto_now_add=True, db_index=True
     )
+
+    class Meta:
+        ordering = ('id',)
 
 
 class Follow(models.Model):
